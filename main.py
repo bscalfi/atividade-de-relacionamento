@@ -85,7 +85,7 @@ def cadastrar_aluno():
             ra = int(input("Digite o RA: "))
 
             aluno = Aluno(nome=nome, idade=idade, ra=ra)
-            aluno.matriculas = matriculaEdital
+            aluno.matriculas = matricula
             session.add(aluno)
             session.commit()
 
