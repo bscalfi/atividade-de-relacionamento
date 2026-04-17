@@ -96,4 +96,34 @@ def cadastrar_aluno():
             print(f"Ocorreu um erro: {erro}")
 
 
-cadastrar_aluno()
+# cadastrar_aluno()
+
+def listar_matricula():
+    with Session() as session:
+        try:
+            todas_matriculas = session.query(Matricula).all()
+            for matricula in todas_matriculas:
+                print(f"\n --- matriculas {matricula.nome} ---")
+                for aluno in matricula.alunos:
+                    print(aluno.nome)
+        except Exception as erro:
+            session.rollback()
+            print(f"Ocorreu um erro{erro}")
+
+
+# listar_matricula()
+
+
+
+def listar_alunos():
+    with Session() as session:
+        try:
+            todos_alunos = session.query(Aluno).all()
+            for aluno in todos_alunos:
+                # nomes_matriculas = [matricula.nome for matricula in aluno]
+                print(f"Nome: {aluno.nome} - matriculas: {aluno.matriculas}")
+        except Exception as erro:
+            session.rollback()
+            print(f"Ocorreu um erro{erro}")
+
+listar_alunos()
